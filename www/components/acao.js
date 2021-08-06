@@ -21,6 +21,7 @@ window.onload = function(){
       response.json().then(data=>{
         temp.innerHTML = data['results']['temp'];
         description.innerHTML = data['results']['description'];
+        city.innerHTML = data['results']['city'];
         humidity.innerHTML = data['results']['humidity'];
         wind_speedy.innerHTML = data['results']['wind_speedy'];
 
