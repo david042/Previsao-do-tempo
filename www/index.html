@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script src="components/acao.js"></script>
 
   <link rel="stylesheet" href="components/loader.css">
@@ -12,21 +13,58 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h2> Digite o nome da cidade: </h2>
-    <input id="cidade">
-    <button id="botao"> buscar </button>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> Tempo em <span id="city"></span> </a>
 
-    <h2> Tempo em <span id="city"></span></h2>
+
+      <form class="d-flex">
+        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#buscarCidade">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="modal fade" tabindex="-1" id="buscarCidade" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> Buscar Cidade </h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <input class="form-control" id="cidade">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal" id="botao"> Buscar </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
     <p> Temperatura: <span id="temp"></span>°C</p>
     <p> Condição: <span id="description"></span></p>
     <p> Umidade: <span id="humidity"></span>%</p>
-    <p> Velocidade do vento: <span id="wind_speedy">km/h</span>°C</p>
+    <p> Velocidade do vento: <span id="wind_speedy">km/h</span></p>
 
-    <h2> Previsão em 5 dias </h2>
+    <br>
 
+    <h2>
+      Previsão em 5 dias 
+      <button class="btn float-end" id="btn"> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      </button>
+    </h2>
     <div class="overflow-scroll">
       <div class="row">
+        <div style="height: 30px;"></div>
         <div class="col">
           <p> Data: <span id="date0"></span></p>
           <p> Dia da semana: <span id="weekday0"></span></p>
