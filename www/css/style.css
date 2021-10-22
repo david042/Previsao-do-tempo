@@ -1,8 +1,12 @@
-.row{
+#overflow{
   width: 300%;
 }
 
 #btn{
   width: auto;
   padding-top: 0;
+}
+
+a{
+  color: black;
 }

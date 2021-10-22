@@ -15,8 +15,7 @@
 <body>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"> Tempo em <span id="city"></span> </a>
-
+      <a class="navbar-brand"> Tempo em <span id="city"></span> </a>
 
       <form class="d-flex">
         <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#buscarCidade">
@@ -28,7 +27,7 @@
     </div>
   </nav>
 
-  <div class="modal fade" tabindex="-1" id="buscarCidade" aria-hidden="true">
+  <div class="modal fade" tabindex="-1" id="buscarCidade">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -38,7 +37,7 @@
         <div class="modal-body">
           <div class="input-group">
             <input class="form-control" id="cidade">
-            <button class="btn btn-outline-secondary" data-bs-dismiss="modal" id="botao"> Buscar </button>
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal" id="buscar"> Buscar </button>
           </div>
         </div>
       </div>
@@ -46,63 +45,139 @@
   </div>
 
   <div class="container">
-
-    <p> Temperatura: <span id="temp"></span>°C</p>
+    <div style="height: 20px;"></div>
+    <p> Atualizado às <span id="time"></span></p>
+    <p> Temperatura: <span id="temp"></span></p>
     <p> Condição: <span id="description"></span></p>
-    <p> Umidade: <span id="humidity"></span>%</p>
-    <p> Velocidade do vento: <span id="wind_speedy">km/h</span></p>
-
+    <p> Umidade: <span id="humidity"></span></p>
+    <p> Velocidade do vento: <span id="wind_speedy"></span></p>
+    <p> Nascer do Sol às <span id="sunrise"></span></p>
+    <p> Pôr do Sol às <span id="sunset"></span></p>
     <br>
-
-    <h2>
-      Previsão em 5 dias 
-      <button class="btn float-end" id="btn"> 
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </button>
-    </h2>
+    <a data-bs-toggle="modal" data-bs-target="#previsao" class="float-end"> 
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </a>
+    <h5> Previsão em 5 dias </h5>
     <div class="overflow-scroll">
-      <div class="row">
-        <div style="height: 30px;"></div>
+      <div class="row" id="overflow">
+        <div style="height: 10px;"></div>
         <div class="col">
           <p> Data: <span id="date0"></span></p>
           <p> Dia da semana: <span id="weekday0"></span></p>
-          <p> Máxima: <span id="max0"></span>°C</p>
-          <p> Mínima: <span id="min0"></span>°C</p>
+          <p> Máxima: <span id="max0"></span></p>
+          <p> Mínima: <span id="min0"></span></p>
           <p> Condição: <span id="prevDescription0"></span></p>
         </div>
         
         <div class="col">
           <p> Data: <span id="date1"></span></p>
           <p> Dia da semana: <span id="weekday1"></span></p>
-          <p> Máxima: <span id="max1"></span>°C</p>
-          <p> Mínima: <span id="min1"></span>°C</p>
+          <p> Máxima: <span id="max1"></span></p>
+          <p> Mínima: <span id="min1"></span></p>
           <p> Condição: <span id="prevDescription1"></span></p>
         </div>
 
         <div class="col">
           <p> Data: <span id="date2"></span></p>
           <p> Dia da semana: <span id="weekday2"></span></p>
-          <p> Máxima: <span id="max2"></span>°C</p>
-          <p> Mínima: <span id="min2"></span>°C</p>
+          <p> Máxima: <span id="max2"></span></p>
+          <p> Mínima: <span id="min2"></span></p>
           <p> Condição: <span id="prevDescription2"></span></p>
         </div>
 
         <div class="col">
           <p> Data: <span id="date3"></span></p>
           <p> Dia da semana: <span id="weekday3"></span></p>
-          <p> Máxima: <span id="max3"></span>°C</p>
-          <p> Mínima: <span id="min3"></span>°C</p>
+          <p> Máxima: <span id="max3"></span></p>
+          <p> Mínima: <span id="min3"></span></p>
           <p> Condição: <span id="prevDescription3"></span></p>
         </div>
 
         <div class="col">
           <p> Data: <span id="date4"></span></p>
           <p> Dia da semana: <span id="weekday4"></span></p>
-          <p> Máxima: <span id="max4"></span>°C</p>
-          <p> Mínima: <span id="min4"></span>°C</p>
+          <p> Máxima: <span id="max4"></span></p>
+          <p> Mínima: <span id="min4"></span></p>
           <p> Condição: <span id="prevDescription4"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="previsao" class="modal">
+      <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <a data-bs-dismiss="modal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+              </svg>
+            </a>
+            <h5 class="modal-title"> Previsão para 10 dias </h5>
+          </div>
+          <div class="modal-body">
+            <p> Data: <span id="date5"></span></p>
+            <p> Dia da semana: <span id="weekday5"></span></p>
+            <p> Máxima: <span id="max5"></span></p>
+            <p> Mínima: <span id="min5"></span></p>
+            <p> Condição: <span id="prevDescription5"></span></p>
+            <hr>
+            <p> Data: <span id="date6"></span></p>
+            <p> Dia da semana: <span id="weekday6"></span></p>
+            <p> Máxima: <span id="max6"></span></p>
+            <p> Mínima: <span id="min6"></span></p>
+            <p> Condição: <span id="prevDescription6"></span></p>
+            <hr>
+            <p> Data: <span id="date7"></span></p>
+            <p> Dia da semana: <span id="weekday7"></span></p>
+            <p> Máxima: <span id="max7"></span></p>
+            <p> Mínima: <span id="min7"></span></p>
+            <p> Condição: <span id="prevDescription7"></span></p>
+            <hr>
+            <p> Data: <span id="date8"></span></p>
+            <p> Dia da semana: <span id="weekday8"></span></p>
+            <p> Máxima: <span id="max8"></span></p>
+            <p> Mínima: <span id="min8"></span></p>
+            <p> Condição: <span id="prevDescription8"></span></p>
+            <hr>
+            <p> Data: <span id="date9"></span></p>
+            <p> Dia da semana: <span id="weekday9"></span></p>
+            <p> Máxima: <span id="max9"></span></p>
+            <p> Mínima: <span id="min9"></span></p>
+            <p> Condição: <span id="prevDescription9"></span></p>
+            <hr>
+            <p> Data: <span id="date10"></span></p>
+            <p> Dia da semana: <span id="weekday10"></span></p>
+            <p> Máxima: <span id="max10"></span></p>
+            <p> Mínima: <span id="min10"></span></p>
+            <p> Condição: <span id="prevDescription10"></span></p>
+            <hr>
+            <p> Data: <span id="date11"></span></p>
+            <p> Dia da semana: <span id="weekday11"></span></p>
+            <p> Máxima: <span id="max11"></span></p>
+            <p> Mínima: <span id="min11"></span></p>
+            <p> Condição: <span id="prevDescription11"></span></p>
+            <hr>
+            <p> Data: <span id="date12"></span></p>
+            <p> Dia da semana: <span id="weekday12"></span></p>
+            <p> Máxima: <span id="max12"></span></p>
+            <p> Mínima: <span id="min12"></span></p>
+            <p> Condição: <span id="prevDescription12"></span></p>
+            <hr>
+            <p> Data: <span id="date13"></span></p>
+            <p> Dia da semana: <span id="weekday13"></span></p>
+            <p> Máxima: <span id="max13"></span></p>
+            <p> Mínima: <span id="min13"></span></p>
+            <p> Condição: <span id="prevDescription13"></span></p>
+            <hr>
+            <p> Data: <span id="date14"></span></p>
+            <p> Dia da semana: <span id="weekday14"></span></p>
+            <p> Máxima: <span id="max14"></span></p>
+            <p> Mínima: <span id="min14"></span></p>
+            <p> Condição: <span id="prevDescription14"></span></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
