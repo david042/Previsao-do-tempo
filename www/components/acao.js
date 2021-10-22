@@ -15,8 +15,10 @@ window.onload = function(){
   var min = [];
   var prevDescription = [];
 
-  buscar.addEventListener("click", function(){
-    fetch(`https://api.hgbrasil.com/weather?key=203f1c51&city_name=${cidade.value}`,{
+  Atualizar();
+
+  function Atualizar(){
+    fetch(`https://api.hgbrasil.com/weather?key=203f1c51&city_name=${localStorage.getItem(1)}`,{
       method: "get",
       mode: "cors",
       cache: "default"
@@ -59,5 +61,10 @@ window.onload = function(){
         }
       });
     });
-  })
+  }
+
+  buscar.addEventListener("click", function(){
+    localStorage.setItem(1, cidade.value);
+    Atualizar();
+  });
 }
